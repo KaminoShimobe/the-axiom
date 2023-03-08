@@ -1,0 +1,19 @@
+{
+  "name": "vcb",
+  "version": "0.0.1",
+  "description": "Kamino's Discord Bot",
+  "main": "bot.js",
+   "engines": {
+    "node": "16.17.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "preinstall": "npm config set package-lock false"
+  },
+  "author": "KaminoShimobe",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^14.7.1",
+    "mysql": "^2.15.0",
+  }
+}
