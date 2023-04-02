@@ -29,7 +29,6 @@ client.on(Events.InteractionCreate, interaction => {
 	if (!interaction.isButton()) return;
 	console.log(interaction);
   
-  async execute(interaction) {
     console.log("Interaction correctly read.")
 		const filter = i => i.customId === 'primary' && i.user.id === '122157285790187530';
 
@@ -41,5 +40,5 @@ collector.on('collect', async i => {
 
 collector.on('end', collected => console.log(`Collected ${collected.size} items`));
 
-	},
+
 });
