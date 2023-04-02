@@ -1,1 +1,1 @@
-worker: sh -c 'node bot.js && node deploy-commands.js'
+worker: sh -c 'node deploy-commands.js && node bot.js'
