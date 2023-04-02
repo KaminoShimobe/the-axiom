@@ -2,7 +2,7 @@ const { SlashCommandBuilder } = require('discord.js');
 
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName('spawnDemon')
+		.setName('spawnDemon'),
 		.setDescription('Spawns a demon!'),
 	async execute(interaction) {
 		const row = new ActionRowBuilder()
@@ -19,7 +19,7 @@ module.exports = {
 			.setImage('https://static.wikia.nocookie.net/megamitensei/images/e/e0/Mothmanof.png/revision/latest?cb=20210912210516')
 			.setDescription('MUITO REAL???');
 
-		await interaction.reply({ content: 'A Demon Appeared!', ephemeral: true, embeds: [embed], components: [row] });
+		return interaction.reply({ content: 'A Demon Appeared!', ephemeral: true, embeds: [embed], components: [row] });
 		
 		const filter = i => i.customId === 'primary' && i.user.id === '122157285790187530';
 
