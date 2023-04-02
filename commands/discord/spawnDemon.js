@@ -1,4 +1,5 @@
 const { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder, Events, SlashCommandBuilder } = require('discord.js');
+const { Demon, Skill} = require('megaten'); 
 
 
 module.exports = {
@@ -6,6 +7,10 @@ module.exports = {
 		.setName('spawn')
 		.setDescription('Spawns a demon!'),
 	async execute(interaction) {
+		const compendium = Demon.array;
+		var random = Math.random() * compendium.length;
+		var demon = compendium[random];
+		console.log(demon);
 		const row = new ActionRowBuilder()
 			.addComponents(
 				new ButtonBuilder()
