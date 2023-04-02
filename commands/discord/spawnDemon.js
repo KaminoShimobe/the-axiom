@@ -11,6 +11,15 @@ module.exports = {
 		var random = Math.floor(Math.random() * compendium.length);
 		var demon = compendium[random];
 		var demonName = demon.toString();
+		
+		let binary = Buffer.from(demon.image); //or Buffer.from(data, 'binary')
+		let imgData = new Blob(binary.buffer, { type: 'application/octet-binary' });
+		let link = URL.createObjectURL(imgData);
+
+		let img = new Image();
+		img.onload = () => URL.revokeObjectURL(link);
+		img.src = link;
+		
 		const row = new ActionRowBuilder()
 			.addComponents(
 				new ButtonBuilder()
@@ -22,7 +31,7 @@ module.exports = {
 		const embed = new EmbedBuilder()
 			.setColor(0x0099FF)
 			.setTitle(demonName)
-			.setImage(demon.image)
+			.setImage(link)
 			.setDescription(demon.lore);
 
 		await interaction.reply({ content: 'A Demon Appeared!', ephemeral: false, embeds: [embed], components: [row] });
