@@ -45,7 +45,7 @@ module.exports = {
 		
 		const filter = i => i.customId === 'primary' && i.user.id === '242118931769196544';
 
-		const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000 })
+		const collector = interaction.channel.createMessageComponentCollector({ filter, max: 1, time: 15000, errors: ['time'] })
 			.then(collected => {
 				interaction.update({ content: 'You talked to the demon!', components: [rowD] });
 			})
