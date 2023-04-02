@@ -3,7 +3,7 @@ const { SlashCommandBuilder } = require('discord.js');
 
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName('spawn demon')
+		.setName('spawn')
 		.setDescription('Spawns a demon!'),
 	async execute(interaction) {
 		const row = new ActionRowBuilder()
