@@ -1,5 +1,12 @@
 const { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder, Events, SlashCommandBuilder } = require('discord.js');
 const { Demon, Skill} = require('megaten'); 
+import bufferToDataUrl from "buffer-to-data-url"
+ 
+
+
+
+
+
 
 
 module.exports = {
@@ -12,13 +19,8 @@ module.exports = {
 		var demon = compendium[random];
 		var demonName = demon.toString();
 		
-		let binary = Buffer.from(demon.image); //or Buffer.from(data, 'binary')
-		let imgData = new Blob(binary.buffer, { type: 'application/octet-binary' });
-		let link = URL.createObjectURL(imgData);
-
-		let img = new Image();
-		img.onload = () => URL.revokeObjectURL(link);
-		img.src = link;
+		const imageBuffer = demon.image;
+		const dataUrl = bufferToDataUrl("image/png", imageBuffer);
 		
 		const row = new ActionRowBuilder()
 			.addComponents(
@@ -31,7 +33,7 @@ module.exports = {
 		const embed = new EmbedBuilder()
 			.setColor(0x0099FF)
 			.setTitle(demonName)
-			.setImage(link)
+			.setImage(dataUrl)
 			.setDescription(demon.lore);
 
 		await interaction.reply({ content: 'A Demon Appeared!', ephemeral: false, embeds: [embed], components: [row] });
