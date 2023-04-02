@@ -10,7 +10,7 @@ module.exports = {
 		const compendium = Demon.array;
 		var random = Math.random() * compendium.length;
 		var demon = compendium[random];
-		console.log(demon);
+		console.log(demon.name);
 		const row = new ActionRowBuilder()
 			.addComponents(
 				new ButtonBuilder()
