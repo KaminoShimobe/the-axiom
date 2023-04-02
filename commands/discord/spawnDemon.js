@@ -6,7 +6,7 @@ const { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder, Events } = r
 client.on(Events.InteractionCreate, async interaction => {
 	if (!interaction.isChatInputCommand()) return;
 
-	if (interaction.commandName === 'button') {
+	if (interaction.commandName === 'spawnDemon') {
 		const row = new ActionRowBuilder()
 			.addComponents(
 				new ButtonBuilder()
