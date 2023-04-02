@@ -51,7 +51,7 @@ module.exports = {
 			await i.update({ content: 'You talked to the demon!', components: [] });
 		});
 
-		collector.on('end', collected => i.update({ content: 'The Demon Fleed!', components: [rowD] }););
+		collector.on('end', collected => i.update({ content: 'The Demon Fleed!', components: [rowD] }));
 
 	},
 };
