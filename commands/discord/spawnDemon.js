@@ -16,8 +16,6 @@ module.exports = {
 		var demonName = demon.toString();
 
 		
-		const imageBuffer = demon.image;
-		fs.writeFileSync("demon.jpg", imageBuffer);
 		
 		
 		const row = new ActionRowBuilder()
@@ -31,7 +29,7 @@ module.exports = {
 		const embed = new EmbedBuilder()
 			.setColor(0x0099FF)
 			.setTitle(demonName)
-			.setImage(demon.jpg)
+			.setImage(`https://raw.githubusercontent.com/Squiddleton/Megaten/master/images/demons/`+ demon.devName +`.png`)
 			.setDescription(demon.lore);
 
 		await interaction.reply({ content: 'A Demon Appeared!', ephemeral: false, embeds: [embed], components: [row] });
