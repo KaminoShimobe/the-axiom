@@ -1,6 +1,6 @@
 const { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder, Events, SlashCommandBuilder } = require('discord.js');
 const { Demon, Skill} = require('megaten'); 
-import bufferToDataUrl from "buffer-to-data-url"
+
  
 
 
@@ -14,6 +14,7 @@ module.exports = {
 		var random = Math.floor(Math.random() * compendium.length);
 		var demon = compendium[random];
 		var demonName = demon.toString();
+		import bufferToDataUrl from "buffer-to-data-url"
 		
 		const imageBuffer = demon.image;
 		const dataUrl = bufferToDataUrl("image/png", imageBuffer);
