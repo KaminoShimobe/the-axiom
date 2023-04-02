@@ -51,7 +51,9 @@ module.exports = {
 			await i.update({ content: 'You talked to the demon!', components: [rowD] });
 		});
 
-		collector.on('end', collected => interaction.update({ content: 'The Demon Fleed!', components: [rowD] }));
+		collector.on('end', async i => {
+			await i.update({ content: 'The Demon Fleed!', components: [rowD]
+		}));
 
 	},
 };
