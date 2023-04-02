@@ -1,12 +1,10 @@
+const { SlashCommandBuilder } = require('discord.js');
 
-
-
-const { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder, Events } = require('discord.js');
-
-client.on(Events.InteractionCreate, async interaction => {
-	if (!interaction.isChatInputCommand()) return;
-
-	if (interaction.commandName === 'spawnDemon') {
+module.exports = {
+	data: new SlashCommandBuilder()
+		.setName('spawnDemon')
+		.setDescription('Spawns a demon!'),
+	async execute(interaction) {
 		const row = new ActionRowBuilder()
 			.addComponents(
 				new ButtonBuilder()
@@ -22,23 +20,16 @@ client.on(Events.InteractionCreate, async interaction => {
 			.setDescription('MUITO REAL???');
 
 		await interaction.reply({ content: 'A Demon Appeared!', ephemeral: true, embeds: [embed], components: [row] });
-	}
-});
-
-client.on(Events.InteractionCreate, interaction => {
-	if (!interaction.isButton()) return;
-	console.log(interaction);
-  
-    console.log("Interaction correctly read.")
+		
 		const filter = i => i.customId === 'primary' && i.user.id === '122157285790187530';
 
-const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000 });
+		const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000 });
 
-collector.on('collect', async i => {
-	await i.update({ content: 'So True!', components: [] });
-});
+		collector.on('collect', async i => {
+			await i.update({ content: 'So True!', components: [] });
+		});
 
-collector.on('end', collected => console.log(`Collected ${collected.size} items`));
+		collector.on('end', collected => console.log(`Collected ${collected.size} items`));
 
-
-});
+	},
+};
