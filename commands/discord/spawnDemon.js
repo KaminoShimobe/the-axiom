@@ -8,7 +8,7 @@ module.exports = {
 		.setDescription('Spawns a demon!'),
 	async execute(interaction) {
 		const compendium = Demon.array;
-		var random = Math.random() * compendium.length;
+		var random = Math.floor(Math.random() * compendium.length);
 		var demon = compendium[random];
 		console.log(demon.name);
 		const row = new ActionRowBuilder()
