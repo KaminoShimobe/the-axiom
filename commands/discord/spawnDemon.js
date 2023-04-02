@@ -52,8 +52,8 @@ module.exports = {
 		});
 
 		collector.on('end', async i => {
-			await i.update({ content: 'The Demon Fleed!', components: [rowD]
-		}));
+			await i.update({ content: 'The Demon Fleed!', components: [rowD]});
+		});
 
 	},
 };
