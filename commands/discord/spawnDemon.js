@@ -5,10 +5,6 @@ import bufferToDataUrl from "buffer-to-data-url"
 
 
 
-
-
-
-
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('spawn')
