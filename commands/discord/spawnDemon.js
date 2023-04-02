@@ -20,7 +20,7 @@ module.exports = {
 			.setImage('https://static.wikia.nocookie.net/megamitensei/images/e/e0/Mothmanof.png/revision/latest?cb=20210912210516')
 			.setDescription('MUITO REAL???');
 
-		await interaction.reply({ content: 'A Demon Appeared!', ephemeral: true, embeds: [embed], components: [row] });
+		await interaction.reply({ content: 'A Demon Appeared!', ephemeral: false, embeds: [embed], components: [row] });
 		
 		const filter = i => i.customId === 'primary' && i.user.id === '242118931769196544';
 
