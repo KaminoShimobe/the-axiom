@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require('discord.js');
 
+
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('spawn demon')
@@ -21,15 +22,15 @@ module.exports = {
 
 		return interaction.reply({ content: 'A Demon Appeared!', ephemeral: true, embeds: [embed], components: [row] });
 		
-		const filter = i => i.customId === 'primary' && i.user.id === '122157285790187530';
+// 		const filter = i => i.customId === 'primary' && i.user.id === '122157285790187530';
 
-		const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000 });
+// 		const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000 });
 
-		collector.on('collect', async i => {
-			await i.update({ content: 'So True!', components: [] });
-		});
+// 		collector.on('collect', async i => {
+// 			await i.update({ content: 'So True!', components: [] });
+// 		});
 
-		collector.on('end', collected => console.log(`Collected ${collected.size} items`));
+// 		collector.on('end', collected => console.log(`Collected ${collected.size} items`));
 
 	},
 };
