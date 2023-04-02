@@ -45,20 +45,14 @@ module.exports = {
 		
 		const filter = i => i.customId === 'primary' && i.user.id === '242118931769196544';
 
-		const collector = interaction.channel.createMessageComponentCollector({ filter, max: 1, time: 15000, errors: ['time'] })
-			.then(collected => {
-				interaction.update({ content: 'You talked to the demon!', components: [rowD] });
-			})
-			.catch(collected => {
-				interaction.update({ content: 'The Demon Fleed!', components: [rowD]});
-			});
+		const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000 });
 
-// 		collector.on('collect', async i => {
-// 			await i.update({ content: 'You talked to the demon!', components: [rowD] });
-// 		});
+		collector.on('collect', async i => {
+			await i.update({ content: 'You talked to the demon!', components: [] });
+		});
 
-// 		collector.on('end', async i => {
-// 			await i.update({ content: 'The Demon Fleed!', components: [rowD]});
+		collector.on('end', collected => console.log(`Collected ${collected.size} items`));
+
 // 		});
 
 	},
