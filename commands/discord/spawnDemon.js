@@ -25,6 +25,15 @@ module.exports = {
 					.setLabel('Talk')
 					.setStyle(ButtonStyle.Primary),
 			);
+		
+		const rowD = new ActionRowBuilder()
+			.addComponents(
+				new ButtonBuilder()
+					.setCustomId('primary')
+					.setLabel('Talk')
+					.setStyle(ButtonStyle.Primary)
+					.setDisabled(true),
+			);
 
 		const embed = new EmbedBuilder()
 			.setColor(0x0099FF)
@@ -42,7 +51,7 @@ module.exports = {
 			await i.update({ content: 'You talked to the demon!', components: [] });
 		});
 
-		collector.on('end', collected => console.log(`Collected ${collected.size} items`));
+		collector.on('end', collected => i.update({ content: 'The Demon Fleed!', components: [rowD] }););
 
 	},
 };
