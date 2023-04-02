@@ -1,6 +1,6 @@
 const { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder, Events, SlashCommandBuilder } = require('discord.js');
 const { Demon, Skill} = require('megaten'); 
-
+const fs = require('fs');
  
 
 
@@ -17,10 +17,7 @@ module.exports = {
 
 		
 		const imageBuffer = demon.image;
-		var mime = 'image/png'; 
-		var encoding = 'base64'; 
-		var data = imageBuffer.toString(encoding); 
-		var uri = 'data:' + mime + ';' + encoding + ',' + data; 
+		fs.writeFileSync("demon.jpg", imageBuffer);
 		
 		
 		const row = new ActionRowBuilder()
@@ -34,7 +31,7 @@ module.exports = {
 		const embed = new EmbedBuilder()
 			.setColor(0x0099FF)
 			.setTitle(demonName)
-			.setImage(uri)
+			.setImage(demon.jpg)
 			.setDescription(demon.lore);
 
 		await interaction.reply({ content: 'A Demon Appeared!', ephemeral: false, embeds: [embed], components: [row] });
