@@ -22,7 +22,7 @@ module.exports = {
 
 		await interaction.reply({ content: 'A Demon Appeared!', ephemeral: true, embeds: [embed], components: [row] });
 		
-		const filter = i => i.customId === 'primary' && i.user.id === '122157285790187530';
+		const filter = i => i.customId === 'primary' && i.user.id === '242118931769196544';
 
 		const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000 });
 
