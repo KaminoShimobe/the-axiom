@@ -20,17 +20,17 @@ module.exports = {
 			.setImage('https://static.wikia.nocookie.net/megamitensei/images/e/e0/Mothmanof.png/revision/latest?cb=20210912210516')
 			.setDescription('MUITO REAL???');
 
-		return interaction.reply({ content: 'A Demon Appeared!', ephemeral: true, embeds: [embed], components: [row] });
+		await interaction.reply({ content: 'A Demon Appeared!', ephemeral: true, embeds: [embed], components: [row] });
 		
-// 		const filter = i => i.customId === 'primary' && i.user.id === '122157285790187530';
+		const filter = i => i.customId === 'primary' && i.user.id === '122157285790187530';
 
-// 		const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000 });
+		const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000 });
 
-// 		collector.on('collect', async i => {
-// 			await i.update({ content: 'So True!', components: [] });
-// 		});
+		collector.on('collect', async i => {
+			await i.update({ content: 'So True!', components: [] });
+		});
 
-// 		collector.on('end', collected => console.log(`Collected ${collected.size} items`));
+		collector.on('end', collected => console.log(`Collected ${collected.size} items`));
 
 	},
 };
