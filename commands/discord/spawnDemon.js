@@ -84,25 +84,25 @@ module.exports = {
 			await i.update({ content: 'You talked to the demon!', components: [rowD] });
 		});
 		
-		const filter = j => j.customId === 'attack' && j.user.id === '242118931769196544';
+		const filter2 = j => j.customId === 'attack' && j.user.id === '242118931769196544';
 
-		const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000 });
+		const collector = interaction.channel.createMessageComponentCollector({ filter2, time: 15000 });
 
 		collector.on('collect', async j => {
 			await j.update({ content: 'You attacked the demon!', components: [rowD] });
 		});
 		
-		const filter = k => k.customId === 'items' && k.user.id === '242118931769196544';
+		const filter3 = k => k.customId === 'items' && k.user.id === '242118931769196544';
 
-		const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000 });
+		const collector = interaction.channel.createMessageComponentCollector({ filter3, time: 15000 });
 
 		collector.on('collect', async k => {
 			await k.update({ content: 'You used an item', components: [rowD] });
 		});
 		
-		const filter = l => l.customId === 'flee' && l.user.id === '242118931769196544';
+		const filter4 = l => l.customId === 'flee' && l.user.id === '242118931769196544';
 
-		const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000 });
+		const collector = interaction.channel.createMessageComponentCollector({ filter4, time: 15000 });
 
 		collector.on('collect', async l => {
 			await l.update({ content: 'You talked to the demon!', components: [rowD] });
