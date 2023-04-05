@@ -16,29 +16,29 @@ module.exports = {
 		var demonName = demon.toString();
 
 		
+		const atkButton = new ButtonBuilder()
+					.setCustomId('attack')
+					.setLabel('Attack')
+					.setStyle(ButtonStyle.Danger);
+		
+		const talkButton = new ButtonBuilder()
+					.setCustomId('talk')
+					.setLabel('Talk')
+					.setStyle(ButtonStyle.Primary);
+		const itemButton = new ButtonBuilder()
+					.setCustomId('items')
+					.setLabel('Item')
+					.setStyle(ButtonStyle.Secondary);
+		
+		const fleeButton = new ButtonBuilder()
+					.setCustomId('flee')
+					.setLabel('Flee')
+					.setStyle(ButtonStyle.Success);
 		
 		
 		const row = new ActionRowBuilder()
 			.addComponents(
-				new ButtonBuilder()
-					.setCustomId('attack')
-					.setLabel('Attack')
-					.setStyle(ButtonStyle.Danger),
-				
-				new ButtonBuilder()
-					.setCustomId('talk')
-					.setLabel('Talk')
-					.setStyle(ButtonStyle.Primary),
-				
-				new ButtonBuilder()
-					.setCustomId('items')
-					.setLabel('Item')
-					.setStyle(ButtonStyle.Secondary),
-				
-				new ButtonBuilder()
-					.setCustomId('flee')
-					.setLabel('Flee')
-					.setStyle(ButtonStyle.Success),
+				atkButton, talkButton, itemButton, fleeButton
 			);
 		
 		const rowD = new ActionRowBuilder()
@@ -76,39 +76,43 @@ module.exports = {
 
 		await interaction.reply({ content: 'A Demon Appeared!', ephemeral: false, embeds: [embed], components: [row] });
 		
-		const filter = i => i.customId === 'talk' && i.user.id === '242118931769196544';
-
-		const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000 });
-
-		collector.on('collect', async i => {
-			await i.update({ content: 'You talked to the demon!', components: [rowD] });
-		});
+		const filter = (interaction) => {
+		  return ['attack', 'talk', 'items', 'flee'].includes(interaction.customID);
+		};
 		
-		const filter2 = j => j.customId === 'attack' && j.user.id === '242118931769196544';
-
-		const collector2 = interaction.channel.createMessageComponentCollector({ filter2, time: 15000 });
-
-		collector2.on('collect', async j => {
-			await j.update({ content: 'You attacked the demon!', components: [rowD] });
-		});
 		
-		const filter3 = k => k.customId === 'items' && k.user.id === '242118931769196544';
+		const collectors = {};
+		['attack', 'talk', 'items', 'flee'].forEach((customID) => {
+		  collectors[customID] = new interaction.channel.createMessageComponentCollector(filter, { time: 10000 }); // 10 seconds
+        });
+		  // Listen for collect event
+		  collectors[customID].on('collect', (interaction) => {
+		    console.log(`Button ${interaction.customID} pressed!`);
+		  });
+			
+			collectors[customID].on('end', (collected) => {
+			    console.log(`Collected ${collected.size} items for button ${customID}.`);
+			    const button = row.components.find((component) => component.customID === customID);
+			    button.setLabel("Time's up!");
+			    button.setStyle(MessageButtonStyles.DANGER);
+			    interaction.update({ content: 'button was pressed!', components: [rowD] });
+			  });
+        
+		//const filter = i => i.customId === 'talk' && i.user.id === '242118931769196544';
 
-		const collector3 = interaction.channel.createMessageComponentCollector({ filter3, time: 15000 });
+// 		const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000 });
 
-		collector3.on('collect', async k => {
-			await k.update({ content: 'You used an item', components: [rowD] });
-		});
-		
-		const filter4 = l => l.customId === 'flee' && l.user.id === '242118931769196544';
+// 		collector.on('collect', async i => {
+// 			await i.update({ content: 'You talked to the demon!', components: [rowD] });
+// 		});
 
-		const collector4 = interaction.channel.createMessageComponentCollector({ filter4, time: 15000 });
-
-		collector4.on('collect', async l => {
-			await l.update({ content: 'You talked to the demon!', components: [rowD] });
-		});
-
-		collector4.on('end', collected => console.log(`Collected ${collected.size} items`));
+// 		collector.on('end', collected =>
+// 			     console.log(`Collected ${collected.size} items for button ${customID}.`)
+// // 			     const button = actionRow.components.find((component) => component.customID === customID);
+// //     				button.setLabel("Time's up!");
+// //    				button.setStyle(MessageButtonStyles.DANGER);
+// //     				message.edit('The time has run out:', { components: [actionRow] });
+// 			    );
 
 // 		});
 
